@@ -1,0 +1,25 @@
+name: upload dockimg
+
+on:
+  workflow_dispatch:
+
+env:
+  DOCKER_BUILDKIT: 1
+
+jobs:
+  build_base:
+    name: Build base image
+    runs-on: ubuntu-latest
+    env:
+      working-directory: './dockimg'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build base image
+        run: |
+          working-directory: ./images 
+          ls -R
+      - uses: actions/upload-artifact@v2
+        with:
+          name: agileconfig-ui
+          path: dockimg/**/*
