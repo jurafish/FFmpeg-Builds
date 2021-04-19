@@ -20,26 +20,15 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USER_NAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-      - name: Build and push Docker images
-        id: docker_build
-        uses: docker/build-push-action@v2.3.0
-        with:
-          push: true
-          tags: aaa-bbb-1.1.1
-          build-args: |
-            ffmpeg-build         
       - name: Image Name
         id: imagename
         run: |
-          echo "::set-output name=name::giantsoft2dock/${GITHUB_REPOSITORY,,}/base:latest" 
+          echo "::set-output name=name::giantsoft2dock/ffmpeg-build/base:latest" 
           ls -R
       - name: Build base image
         run: |
           docker build --pull --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from ${{ steps.imagename.outputs.name }} --tag ${{ steps.imagename.outputs.name }} images/base 
           ls -R
-      - name: dir list
-        run: ls -R
-        working-directory: ${{ env.working-directory }}
       - uses: actions/upload-artifact@v2
         with:
           name: agileconfig-ui
