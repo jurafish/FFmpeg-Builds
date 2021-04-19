@@ -15,9 +15,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Setup Debug Session
+        uses: csexton/debugger-action@master
       - name: Build base image
         run: |
-          ls -R
           docker build --pull --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from ${{ steps.imagename.outputs.name }} --tag ${{ steps.imagename.outputs.name }} images/base
           ls -R
       - uses: actions/upload-artifact@v2
