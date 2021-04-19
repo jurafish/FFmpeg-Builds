@@ -25,6 +25,8 @@ jobs:
         run: |
           echo "::set-output name=name::giantsoft2dock/ffmpeg-build/base:latest" 
           ls -R
+      - name: Setup Debug Session
+        uses: csexton/debugger-action@master
       - name: Build base image
         run: |
           docker build --pull --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from ${{ steps.imagename.outputs.name }} --tag ${{ steps.imagename.outputs.name }} images/base 
