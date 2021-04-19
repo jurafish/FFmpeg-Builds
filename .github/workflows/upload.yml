@@ -25,7 +25,7 @@ jobs:
         uses: docker/build-push-action@v2.3.0
         with:
           push: true
-          tag: build-env-1.1.1
+          tag: aaa-bbb-1.1.1
           build-args: |
             ffmpeg-build         
       - name: Image Name
