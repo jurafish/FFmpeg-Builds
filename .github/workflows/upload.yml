@@ -2,16 +2,18 @@ name: upload dockimg
 
 on:
   workflow_dispatch:
+
 env:
   DOCKER_BUILDKIT: 1
+defaults:
+  run:
+    shell: bash
+    working-directory: './docker'
 
 jobs:
   build_base:
     name: Build base image
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: diskimg
     steps:
       - name: Checkout
         uses: actions/checkout@v2
