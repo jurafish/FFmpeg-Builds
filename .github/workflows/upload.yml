@@ -22,9 +22,13 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
       - name: Image Name
         id: imagename
-        run: echo "::set-output name=name::giantsoft2dock/${GITHUB_REPOSITORY,,}/base:latest" ls -R
+        run: |
+          echo "::set-output name=name::giantsoft2dock/${GITHUB_REPOSITORY,,}/base:latest" 
+          ls -R
       - name: Build base image
-        run: docker build --pull --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from ${{ steps.imagename.outputs.name }} --tag ${{ steps.imagename.outputs.name }} images/base ls -R
+        run: |
+          docker build --pull --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from ${{ steps.imagename.outputs.name }} --tag ${{ steps.imagename.outputs.name }} images/base 
+          ls -R
       - name: dir list
         run: ls -R
         working-directory: ${{ env.working-directory }}
