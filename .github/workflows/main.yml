@@ -15,12 +15,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v1
       - name: Build base image
         run: |
           docker build --pull --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from ${{ steps.imagename.outputs.name }} --tag ${{ steps.imagename.outputs.name }} images/base
-          ls -R
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v1
       - uses: actions/upload-artifact@v2
         with:
           name: agileconfig-ui
