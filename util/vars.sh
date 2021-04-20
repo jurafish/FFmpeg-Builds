@@ -31,9 +31,9 @@ done
 REPO="${GITHUB_REPOSITORY:-btbn/ffmpeg-builds}"
 REPO="${REPO,,}"
 REGISTRY="giantsoft2dock"
-BASE_IMAGE="${REGISTRY}/${REPO}/base:latest"
-TARGET_IMAGE="${REGISTRY}/${REPO}/base-${TARGET}:latest"
-IMAGE="${REGISTRY}/${REPO}/${TARGET}-${VARIANT}${ADDINS_STR:+-}${ADDINS_STR}:latest"
+BASE_IMAGE="giantsoft2dock/ffmpeg-base:latest"
+TARGET_IMAGE="giantsoft2dock/ffmpeg-base-${TARGET}:latest"
+IMAGE="giantsoft2dock/ffmpeg-${TARGET}-${VARIANT}${ADDINS_STR:+-}${ADDINS_STR}:latest"
 
 ffbuild_dockerstage() {
     to_df "RUN --mount=src=${SELF},dst=/stage.sh run_stage /stage.sh"
