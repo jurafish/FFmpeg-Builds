@@ -9,5 +9,7 @@ jobs:
     name: script test
     runs-on: ubuntu-latest
     steps:
-      - name: Purge old artifacts
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: test script
         run: test.sh
