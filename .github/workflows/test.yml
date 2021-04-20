@@ -1,0 +1,13 @@
+name: Build FFmpeg
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  test:
+    name: script test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Purge old artifacts
+        run: test.sh
