@@ -29,9 +29,9 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
       - name: Image Name
         id: imagename
-        run: echo "::set-output name=name::giantsoft2dock/${GITHUB_REPOSITORY,,}/base:latest"
+        run: echo "::set-output name=name::giantsoft2dock/ffmpeg-base:latest"
       - name: Build base image
-        run: docker build --pull --tag ${{ steps.imagename.outputs.name }} images/base
+        run: docker build --pull --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from ${{ steps.imagename.outputs.name }} --tag ${{ steps.imagename.outputs.name }} images/base
       - name: Setup Debug Session
         uses: csexton/debugger-action@master
       - name: Push base image
@@ -54,7 +54,7 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
       - name: Image Name
         id: imagename
-        run: echo "::set-output name=name::giantsoft2dock/${GITHUB_REPOSITORY,,}/base-${{ matrix.target }}:latest"
+        run: echo "::set-output name=name::giantsoft2dock/ffmpeg-base-${{ matrix.target }}:latest"
       - name: Build target base image
         run: docker build --pull --build-arg BUILDKIT_INLINE_CACHE=1 --build-arg GH_REPO=${GITHUB_REPOSITORY,,} --cache-from ${{ steps.imagename.outputs.name }} --tag ${{ steps.imagename.outputs.name }} images/base-${{ matrix.target }}
       - name: Push target base image
@@ -83,7 +83,7 @@ jobs:
       - name: Image Name
         id: imagename
         run: |
-          IMG="giantsoft2dock/${GITHUB_REPOSITORY,,}/${{ matrix.target }}-${{ matrix.variant }}"
+          IMG="giantsoft2dock/ffmpeg-${{ matrix.target }}-${{ matrix.variant }}"
           echo "::set-output name=name::${IMG/ /-}:latest"
           echo "::set-output name=cache_name::${IMG/ /-}:cache"
       - name: Build variant image
