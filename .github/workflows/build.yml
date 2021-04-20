@@ -54,7 +54,7 @@ jobs:
         id: imagename
         run: echo "::set-output name=name::giantsoft2dock/ffmpeg-base-${{ matrix.target }}
       - name: Build target base image
-        run: docker build --pull --build-arg BUILDKIT_INLINE_CACHE=1 --build-arg GH_REPO=${GITHUB_REPOSITORY,,} --cache-from ${{ steps.imagename.outputs.name }} --tag ${{ steps.imagename.outputs.name }}:latest
+        run: docker build --pull --build-arg BUILDKIT_INLINE_CACHE=1 --build-arg GH_REPO=${GITHUB_REPOSITORY,,} --cache-from ${{ steps.imagename.outputs.name }} --tag ${{ steps.imagename.outputs.name }}:latest images/base-${{ matrix.target }}
       - name: Push target base image
         run: docker push ${{ steps.imagename.outputs.name }}:latest
   build_targets:
