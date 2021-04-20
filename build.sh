@@ -25,7 +25,7 @@ done
 export FFBUILD_PREFIX="$(docker run --rm "$IMAGE" bash -c 'echo $FFBUILD_PREFIX')"
 
 for script in scripts.d/**/*.sh; do
-    if [ "$script" == "45-vulkan.sh" ] 
+    if [ "${script}" == "scripts.d/45-vulkan.sh" ] 
     then 
         continue 
     fi
