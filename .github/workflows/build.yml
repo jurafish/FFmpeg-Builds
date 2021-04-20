@@ -29,11 +29,11 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
       - name: Image Name
         id: imagename
-        run: echo "::set-output name=name::giantsoft2dock/ffmpeg-base:latest"
+        run: echo "::set-output name=name::giantsoft2dock/ffmpeg-base"
       - name: Build base image
-        run: docker build --pull --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from ${{ steps.imagename.outputs.name }} --tag ${{ steps.imagename.outputs.name }} images/base
+        run: docker build --pull --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from ${{ steps.imagename.outputs.name }} --tag ${{ steps.imagename.outputs.name }}:latest images/base
       - name: Push base image
-        run: docker push ${{ steps.imagename.outputs.name }}
+        run: docker push ${{ steps.imagename.outputs.name }}:latest
   build_target_bases:
     name: Build target base image
     needs: build_base
@@ -52,11 +52,11 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
       - name: Image Name
         id: imagename
-        run: echo "::set-output name=name::giantsoft2dock/ffmpeg-base-${{ matrix.target }}:latest"
+        run: echo "::set-output name=name::giantsoft2dock/ffmpeg-base-${{ matrix.target }}
       - name: Build target base image
-        run: docker build --pull --build-arg BUILDKIT_INLINE_CACHE=1 --build-arg GH_REPO=${GITHUB_REPOSITORY,,} --cache-from ${{ steps.imagename.outputs.name }} --tag ${{ steps.imagename.outputs.name }} images/base-${{ matrix.target }}
+        run: docker build --pull --build-arg BUILDKIT_INLINE_CACHE=1 --build-arg GH_REPO=${GITHUB_REPOSITORY,,} --cache-from ${{ steps.imagename.outputs.name }} --tag ${{ steps.imagename.outputs.name }}:latest
       - name: Push target base image
-        run: docker push ${{ steps.imagename.outputs.name }}
+        run: docker push ${{ steps.imagename.outputs.name }}:latest
   build_targets:
     name: Build target-variant image
     needs: build_target_bases
