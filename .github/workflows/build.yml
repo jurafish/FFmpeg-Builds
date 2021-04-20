@@ -15,8 +15,6 @@ jobs:
         with:
           age: 0 days
           skip-recent: 3
-      - name: Setup Debug Session
-        uses: csexton/debugger-action@master
           
   build_base:
     name: Build base image
