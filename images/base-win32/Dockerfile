@@ -1,5 +1,5 @@
-ARG GH_REPO=btbn/ffmpeg-builds
-FROM ghcr.io/$GH_REPO/base:latest
+ARG GH_REPO=jurafish/ffmpeg-builds
+FROM giantsoft2dock/ffmpeg-base:latest
 
 ENV DEBIAN_FRONTEND noninteractive
 
