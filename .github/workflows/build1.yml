@@ -20,6 +20,8 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USER_NAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+      - name: Setup Debug Session
+        uses: csexton/debugger-action@master
       - name: Build ffmpeg
         run: ./build.sh ${{ matrix.target }} ${{ matrix.variant }}
       - name: Upload artifacts
