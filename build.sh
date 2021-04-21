@@ -41,6 +41,10 @@ for script in scripts.d/**/*.sh; do
     then
       continue
     fi
+    if [ "${script}" == "scripts.d/50-uavs3d.sh" ]
+    then
+      continue
+    fi
     
     
     FF_CONFIGURE+=" $(get_output $script configure)"
