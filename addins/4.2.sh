@@ -1,2 +1,2 @@
 #!/bin/bash
-GIT_BRANCH="release/4.2.4"
+GIT_BRANCH="release/4.2"
