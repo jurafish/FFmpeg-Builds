@@ -27,7 +27,11 @@ export FFBUILD_PREFIX="$(docker run --rm "$IMAGE" bash -c 'echo $FFBUILD_PREFIX'
 for script in scripts.d/**/*.sh; do
     if [ "${script}" == "scripts.d/45-vulkan.sh" ] 
     then 
-        continue 
+      continue 
+    fi
+    if [ "${script}" == "scripts.d/50-glslang.sh" ]
+    then
+      continue
     fi
     FF_CONFIGURE+=" $(get_output $script configure)"
     FF_CFLAGS+=" $(get_output $script cflags)"
