@@ -1,5 +1,6 @@
 #!/bin/bash
-set -xe
+#set -xe
+shopt globstar
 cd "$(dirname "$0")"
 
 for script in scripts.d/**/*.sh; do
