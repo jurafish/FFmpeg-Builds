@@ -1,8 +1,7 @@
-name: Build FFmpeg
+name: test
 
 on:
   workflow_dispatch:
-
 
 jobs:
   test:
