@@ -33,6 +33,10 @@ for script in scripts.d/**/*.sh; do
     then
       continue
     fi
+    if [ "${script}" == "scripts.d/50-rav1e.sh" ]
+    then
+      continue
+    fi
     FF_CONFIGURE+=" $(get_output $script configure)"
     FF_CFLAGS+=" $(get_output $script cflags)"
     FF_CXXFLAGS+=" $(get_output $script cxxflags)"
