@@ -21,7 +21,10 @@ jobs:
       - run: $env:GITHUB_ENV
 
       - run: $env:GITHUB_WORKSPACE
-      
+      - uses: actions/upload-artifact@v2
+        with:
+          name: agileconfig-ui
+          path: $env:GITHUB_ENV
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
