@@ -18,7 +18,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-     # - run: get-childitem env:
+      - run: get-childitem env:
 
       - run: $env:GITHUB_WORKSPACE
       
